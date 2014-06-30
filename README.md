@@ -37,7 +37,7 @@ let u2 = NSURL(string: "https://api/endpoint2")
 
 This code issues two API calls in serial, the second will fail if the first fails.
 
-Wrapping typical asynchronous Cocoa Touch code is fairly easy, just define a method/function which will return a Wyrd instance, which you will be able to chain. You will need to fulfil the promise in the raw callbacks code to indicate when the promise will be able to chain further:
+Wrapping typical asynchronous Cocoa Touch code is fairly easy, just define a method/function which will return a Wyrd instance, which you will be able to chain. You will need to fulfil or reject the promise in the raw callbacks code to indicate when the promise will be able to chain further:
 
 ```swift
 typealias FullResponse = (NSData!, NSURLResponse!)
