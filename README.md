@@ -16,45 +16,49 @@ Essentially, Wyrd instance is a promise, which can be chained with other promise
 
 Obligatory example (`getURLData` and `FullResponse` typealias are provided to you by Wyrd):
 
-    let s = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
-    let u1 = NSURL(string: "https://api/endpoint")
-    let u2 = NSURL(string: "https://api/endpoint2")
-    (s.getURLData(u1) => { (full: FullResponse) -> Wyrd<FullResponse> in
-      switch full {
-      case let (data, response):
-        println("data length is \(data.length)")
-      }
-      return s.getURLData(u2)
-    }).success { (full: FullResponse) in
-      switch full {
-      case let (data, response):
-        println("data length is \(data.length)")
-      }
-    }
+```swift
+let s = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
+let u1 = NSURL(string: "https://api/endpoint1")
+let u2 = NSURL(string: "https://api/endpoint2")
+(s.getURLData(u1) => { (full: FullResponse) -> Wyrd<FullResponse> in
+  switch full {
+  case let (data, response):
+    println("data1 length is \(data.length)")
+  }
+  return s.getURLData(u2)
+}).success { (full: FullResponse) in
+  switch full {
+  case let (data, response):
+    println("data2 length is \(data.length)")
+  }
+}
+```
 
 This code issues two API calls in serial, the second will fail if the first fails.
 
 Wrapping typical asynchronous Cocoa Touch code is fairly easy, just define a method/function which will return a Wyrd instance, which you will be able to chain. You will need to fulfil the promise in the raw callbacks code to indicate when the promise will be able to chain further:
 
-    typealias FullResponse = (NSData!, NSURLResponse!)
+```swift
+typealias FullResponse = (NSData!, NSURLResponse!)
 
-    extension NSURLSession {
-      func getURLData(url: NSURL) -> Wyrd<FullResponse> {
-        let result = Wyrd<FullResponse>()
+extension NSURLSession {
+  func getURLData(url: NSURL) -> Wyrd<FullResponse> {
+    let result = Wyrd<FullResponse>()
 
-        let task = dataTaskWithURL(url) { data, response, error in
-          if let e = error {
-            result.reject(e)
-          } else {
-            let tuple = (data, response)
-            result.fulfil(tuple)
-          }
-        }
-
-        task.resume()
-
-        return result
+    let task = dataTaskWithURL(url) { data, response, error in
+      if let e = error {
+        result.reject(e)
+      } else {
+        let tuple = (data, response)
+        result.fulfil(tuple)
       }
     }
+
+    task.resume()
+
+    return result
+  }
+}
+```
 
 More examples and wrapper functions are coming soon.
