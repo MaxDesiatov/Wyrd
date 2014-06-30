@@ -1,0 +1,7 @@
+Pods
+*.xccheckout
+*.xcworkspacedata
+*.xcbkptlist
+*.xcsettings
+*.xcuserdatad
+
