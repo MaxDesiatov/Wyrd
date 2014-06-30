@@ -14,13 +14,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             
   var window: UIWindow?
 
-
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: NSDictionary?) -> Bool {
-
     let s = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
-    let u = NSURL(string: "https://librivox.org/api/feed/audiobooks/?id=52&format=json")
-    s.getURLData(u).success { data in
+    let u1 = NSURL(string: "https://librivox.org/api/feed/audiobooks/?id=52&format=json")
+    let u2 = NSURL(string: "https://librivox.org/api/feed/audiobooks/?id=53&format=json")
+    s.getURLData(u1) => { (data: NSData) -> Wyrd<NSData> in
       println("data length is \(data.length)")
+      return s.getURLData(u2)
+    } => { (data: NSData) -> Wyrd<NSData> in
+      println("data length is \(data.length)")
+      return Wyrd<NSData>()
     }
 
     return true

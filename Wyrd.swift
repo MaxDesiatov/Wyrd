@@ -9,8 +9,8 @@
 import Foundation
 
 extension NSURLSession {
-  func getURLData(url: NSURL) -> Wyrd<NSData, NSError> {
-    let result = Wyrd<NSData, NSError>()
+  func getURLData(url: NSURL) -> Wyrd<NSData> {
+    let result = Wyrd<NSData>()
 
     let task = dataTaskWithURL(url) { data, response, error in
       if let e = error {
@@ -32,11 +32,11 @@ enum State {
   case IsRejected
 }
 
-class Wyrd<T, E> {
+class Wyrd<T> {
   var onSuccess: (T -> ())?
-  var onError: (E -> ())?
+  var onError: (NSError -> ())?
   var value: T[] = []
-  var error: E[] = []
+  var error: NSError[] = []
   var state: State = .IsPending
 
   func fulfill(v: T) {
@@ -48,7 +48,7 @@ class Wyrd<T, E> {
     }
   }
 
-  func reject(e: E) {
+  func reject(e: NSError) {
     if let f = onError {
       f(e)
     } else {
@@ -70,8 +70,8 @@ class Wyrd<T, E> {
 
 operator infix => { associativity left }
 
-func => <T1, T2, E>(w1: Wyrd<T1, E>, then: T1 -> Wyrd<T2, E>) -> Wyrd<T2, E> {
-  let w2 = Wyrd<T2, E>()
+func => <T1, T2>(w1: Wyrd<T1>, then: T1 -> Wyrd<T2>) -> Wyrd<T2> {
+  let w2 = Wyrd<T2>()
   w1.success { v1 in
     NSOperationQueue.mainQueue().addOperationWithBlock {
       let temp = then(v1)
@@ -82,5 +82,3 @@ func => <T1, T2, E>(w1: Wyrd<T1, E>, then: T1 -> Wyrd<T2, E>) -> Wyrd<T2, E> {
   }
   return w2
 }
-
-
