@@ -5,6 +5,7 @@ Wyrd is inspired by [Promises/A+](http://promisesaplus.com). Both Swift and Coco
 
 ## How to Install
 At the moment the most convenient way is to add Wyrd repository as a git submodule to your main repository:
+
     git add submodule add https://github.com/explicitcall/Wyrd.git wyrd
 
 Then add `Wyrd.swift` file to your project.
