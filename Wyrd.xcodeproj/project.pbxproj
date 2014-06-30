@@ -11,6 +11,12 @@
 		E226801F196176F600B08694 /* Wyrd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2268013196176F600B08694 /* Wyrd.framework */; };
 		E2268026196176F600B08694 /* WyrdTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2268025196176F600B08694 /* WyrdTests.swift */; };
 		E22680301961770900B08694 /* Wyrd.swift in Sources */ = {isa = PBXBuildFile; fileRef = E226802F1961770900B08694 /* Wyrd.swift */; };
+		E226803A19619A9A00B08694 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E226803919619A9A00B08694 /* AppDelegate.swift */; };
+		E226803C19619A9A00B08694 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E226803B19619A9A00B08694 /* ViewController.swift */; };
+		E226803F19619A9A00B08694 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E226803D19619A9A00B08694 /* Main.storyboard */; };
+		E226804119619A9A00B08694 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E226804019619A9A00B08694 /* Images.xcassets */; };
+		E226804D19619A9B00B08694 /* WyrdDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E226804C19619A9B00B08694 /* WyrdDemoTests.swift */; };
+		E226805419619AB000B08694 /* Wyrd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2268013196176F600B08694 /* Wyrd.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -20,6 +26,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = E2268012196176F600B08694;
 			remoteInfo = Wyrd;
+		};
+		E226804719619A9B00B08694 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E226800A196176F600B08694 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E226803419619A9A00B08694;
+			remoteInfo = WyrdDemo;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -31,6 +44,15 @@
 		E2268024196176F600B08694 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2268025196176F600B08694 /* WyrdTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WyrdTests.swift; sourceTree = "<group>"; };
 		E226802F1961770900B08694 /* Wyrd.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wyrd.swift; sourceTree = SOURCE_ROOT; };
+		E226803519619A9A00B08694 /* WyrdDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WyrdDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E226803819619A9A00B08694 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E226803919619A9A00B08694 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E226803B19619A9A00B08694 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E226803E19619A9A00B08694 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E226804019619A9A00B08694 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		E226804619619A9B00B08694 /* WyrdDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WyrdDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E226804B19619A9B00B08694 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E226804C19619A9B00B08694 /* WyrdDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WyrdDemoTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +71,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E226803219619A9A00B08694 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E226805419619AB000B08694 /* Wyrd.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E226804319619A9B00B08694 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -57,6 +94,8 @@
 			children = (
 				E2268015196176F600B08694 /* Wyrd */,
 				E2268022196176F600B08694 /* WyrdTests */,
+				E226803619619A9A00B08694 /* WyrdDemo */,
+				E226804919619A9B00B08694 /* WyrdDemoTests */,
 				E2268014196176F600B08694 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -66,6 +105,8 @@
 			children = (
 				E2268013196176F600B08694 /* Wyrd.framework */,
 				E226801E196176F600B08694 /* WyrdTests.xctest */,
+				E226803519619A9A00B08694 /* WyrdDemo.app */,
+				E226804619619A9B00B08694 /* WyrdDemoTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -101,6 +142,43 @@
 			isa = PBXGroup;
 			children = (
 				E2268024196176F600B08694 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E226803619619A9A00B08694 /* WyrdDemo */ = {
+			isa = PBXGroup;
+			children = (
+				E226803919619A9A00B08694 /* AppDelegate.swift */,
+				E226803B19619A9A00B08694 /* ViewController.swift */,
+				E226803D19619A9A00B08694 /* Main.storyboard */,
+				E226804019619A9A00B08694 /* Images.xcassets */,
+				E226803719619A9A00B08694 /* Supporting Files */,
+			);
+			path = WyrdDemo;
+			sourceTree = "<group>";
+		};
+		E226803719619A9A00B08694 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E226803819619A9A00B08694 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E226804919619A9B00B08694 /* WyrdDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				E226804C19619A9B00B08694 /* WyrdDemoTests.swift */,
+				E226804A19619A9B00B08694 /* Supporting Files */,
+			);
+			path = WyrdDemoTests;
+			sourceTree = "<group>";
+		};
+		E226804A19619A9B00B08694 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				E226804B19619A9B00B08694 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -155,6 +233,41 @@
 			productReference = E226801E196176F600B08694 /* WyrdTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		E226803419619A9A00B08694 /* WyrdDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E226804E19619A9B00B08694 /* Build configuration list for PBXNativeTarget "WyrdDemo" */;
+			buildPhases = (
+				E226803119619A9A00B08694 /* Sources */,
+				E226803219619A9A00B08694 /* Frameworks */,
+				E226803319619A9A00B08694 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = WyrdDemo;
+			productName = WyrdDemo;
+			productReference = E226803519619A9A00B08694 /* WyrdDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E226804519619A9B00B08694 /* WyrdDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E226805119619A9B00B08694 /* Build configuration list for PBXNativeTarget "WyrdDemoTests" */;
+			buildPhases = (
+				E226804219619A9B00B08694 /* Sources */,
+				E226804319619A9B00B08694 /* Frameworks */,
+				E226804419619A9B00B08694 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E226804819619A9B00B08694 /* PBXTargetDependency */,
+			);
+			name = WyrdDemoTests;
+			productName = WyrdDemoTests;
+			productReference = E226804619619A9B00B08694 /* WyrdDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -171,6 +284,13 @@
 						CreatedOnToolsVersion = 6.0;
 						TestTargetID = E2268012196176F600B08694;
 					};
+					E226803419619A9A00B08694 = {
+						CreatedOnToolsVersion = 6.0;
+					};
+					E226804519619A9B00B08694 = {
+						CreatedOnToolsVersion = 6.0;
+						TestTargetID = E226803419619A9A00B08694;
+					};
 				};
 			};
 			buildConfigurationList = E226800D196176F600B08694 /* Build configuration list for PBXProject "Wyrd" */;
@@ -179,6 +299,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
+				Base,
 			);
 			mainGroup = E2268009196176F600B08694;
 			productRefGroup = E2268014196176F600B08694 /* Products */;
@@ -187,6 +308,8 @@
 			targets = (
 				E2268012196176F600B08694 /* Wyrd */,
 				E226801D196176F600B08694 /* WyrdTests */,
+				E226803419619A9A00B08694 /* WyrdDemo */,
+				E226804519619A9B00B08694 /* WyrdDemoTests */,
 			);
 		};
 /* End PBXProject section */
@@ -200,6 +323,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		E226801C196176F600B08694 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E226803319619A9A00B08694 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E226803F19619A9A00B08694 /* Main.storyboard in Resources */,
+				E226804119619A9A00B08694 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E226804419619A9B00B08694 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -225,6 +364,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E226803119619A9A00B08694 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E226803C19619A9A00B08694 /* ViewController.swift in Sources */,
+				E226803A19619A9A00B08694 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E226804219619A9B00B08694 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E226804D19619A9B00B08694 /* WyrdDemoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -233,7 +389,23 @@
 			target = E2268012196176F600B08694 /* Wyrd */;
 			targetProxy = E2268020196176F600B08694 /* PBXContainerItemProxy */;
 		};
+		E226804819619A9B00B08694 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E226803419619A9A00B08694 /* WyrdDemo */;
+			targetProxy = E226804719619A9B00B08694 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		E226803D19619A9A00B08694 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E226803E19619A9A00B08694 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		E2268027196176F600B08694 /* Debug */ = {
@@ -386,6 +558,70 @@
 			};
 			name = Release;
 		};
+		E226804F19619A9B00B08694 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = WyrdDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				METAL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		E226805019619A9B00B08694 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				INFOPLIST_FILE = WyrdDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				METAL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		E226805219619A9B00B08694 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/WyrdDemo.app/WyrdDemo";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = WyrdDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				METAL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Debug;
+		};
+		E226805319619A9B00B08694 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/WyrdDemo.app/WyrdDemo";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = WyrdDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				METAL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -411,6 +647,22 @@
 			buildConfigurations = (
 				E226802D196176F600B08694 /* Debug */,
 				E226802E196176F600B08694 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E226804E19619A9B00B08694 /* Build configuration list for PBXNativeTarget "WyrdDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E226804F19619A9B00B08694 /* Debug */,
+				E226805019619A9B00B08694 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		E226805119619A9B00B08694 /* Build configuration list for PBXNativeTarget "WyrdDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E226805219619A9B00B08694 /* Debug */,
+				E226805319619A9B00B08694 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
