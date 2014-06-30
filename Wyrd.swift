@@ -8,15 +8,18 @@
 
 import Foundation
 
+typealias FullResponse = (NSData!, NSURLResponse!)
+
 extension NSURLSession {
-  func getURLData(url: NSURL) -> Wyrd<NSData> {
-    let result = Wyrd<NSData>()
+  func getURLData(url: NSURL) -> Wyrd<FullResponse> {
+    let result = Wyrd<FullResponse>()
 
     let task = dataTaskWithURL(url) { data, response, error in
       if let e = error {
         result.reject(e)
       } else {
-        result.fulfill(data)
+        let tuple = (data, response)
+        result.fulfil(tuple)
       }
     }
 
@@ -39,7 +42,7 @@ class Wyrd<T> {
   var error: NSError[] = []
   var state: State = .IsPending
 
-  func fulfill(v: T) {
+  func fulfil(v: T) {
     if let f = onSuccess {
       f(v)
     } else {
@@ -76,7 +79,7 @@ func => <T1, T2>(w1: Wyrd<T1>, then: T1 -> Wyrd<T2>) -> Wyrd<T2> {
     NSOperationQueue.mainQueue().addOperationWithBlock {
       let temp = then(v1)
       temp.success { v2 in
-        w2.fulfill(v2)
+        w2.fulfil(v2)
       }
     }
   }

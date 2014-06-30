@@ -18,12 +18,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let s = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
     let u1 = NSURL(string: "https://librivox.org/api/feed/audiobooks/?id=52&format=json")
     let u2 = NSURL(string: "https://librivox.org/api/feed/audiobooks/?id=53&format=json")
-    s.getURLData(u1) => { (data: NSData) -> Wyrd<NSData> in
-      println("data length is \(data.length)")
+    (s.getURLData(u1) => { (full: FullResponse) -> Wyrd<FullResponse> in
+      switch full {
+      case let (data, response):
+        println("data length is \(data.length)")
+      }
       return s.getURLData(u2)
-    } => { (data: NSData) -> Wyrd<NSData> in
-      println("data length is \(data.length)")
-      return Wyrd<NSData>()
+    }).success { (full: FullResponse) in
+      switch full {
+      case let (data, response):
+        println("data length is \(data.length)")
+      }
     }
 
     return true
