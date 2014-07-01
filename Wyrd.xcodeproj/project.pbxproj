@@ -18,6 +18,7 @@
 		E226804D19619A9B00B08694 /* WyrdDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E226804C19619A9B00B08694 /* WyrdDemoTests.swift */; };
 		E226805419619AB000B08694 /* Wyrd.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2268013196176F600B08694 /* Wyrd.framework */; };
 		E22680561961A62C00B08694 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = E22680551961A62C00B08694 /* README.md */; };
+		E267B8541962CBB5004712DF /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E267B8531962CBB5004712DF /* Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		E226804B19619A9B00B08694 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E226804C19619A9B00B08694 /* WyrdDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WyrdDemoTests.swift; sourceTree = "<group>"; };
 		E22680551961A62C00B08694 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		E267B8531962CBB5004712DF /* Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 			children = (
 				E2268018196176F600B08694 /* Wyrd.h */,
 				E226802F1961770900B08694 /* Wyrd.swift */,
+				E267B8531962CBB5004712DF /* Helpers.swift */,
 				E2268016196176F600B08694 /* Supporting Files */,
 			);
 			path = Wyrd;
@@ -356,6 +359,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E22680301961770900B08694 /* Wyrd.swift in Sources */,
+				E267B8541962CBB5004712DF /* Helpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -645,6 +649,7 @@
 				E226802B196176F600B08694 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E226802C196176F600B08694 /* Build configuration list for PBXNativeTarget "WyrdTests" */ = {
 			isa = XCConfigurationList;
@@ -653,6 +658,7 @@
 				E226802E196176F600B08694 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E226804E19619A9B00B08694 /* Build configuration list for PBXNativeTarget "WyrdDemo" */ = {
 			isa = XCConfigurationList;
@@ -661,6 +667,7 @@
 				E226805019619A9B00B08694 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E226805119619A9B00B08694 /* Build configuration list for PBXNativeTarget "WyrdDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -669,6 +676,7 @@
 				E226805319619A9B00B08694 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

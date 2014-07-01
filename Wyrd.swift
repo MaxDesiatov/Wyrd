@@ -8,27 +8,6 @@
 
 import Foundation
 
-typealias FullResponse = (NSData!, NSURLResponse!)
-
-extension NSURLSession {
-  func getURLData(url: NSURL) -> Wyrd<FullResponse> {
-    let result = Wyrd<FullResponse>()
-
-    let task = dataTaskWithURL(url) { data, response, error in
-      if let e = error {
-        result.reject(e)
-      } else {
-        let tuple = (data, response)
-        result.fulfil(tuple)
-      }
-    }
-
-    task.resume()
-
-    return result
-  }
-}
-
 enum State {
   case IsPending
   case IsFulfilled
@@ -38,13 +17,24 @@ enum State {
 class Wyrd<T> {
   var onSuccess: (T -> ())?
   var onError: (NSError -> ())?
+
+  // FIXME: these two should be optionals, but compiler is buggy
   var value: T[] = []
   var error: NSError[] = []
-  var state: State = .IsPending
+
+  var queue = NSOperationQueue.mainQueue()
+  var state = State.IsPending
+
+  // FIXME: not really needed, but compiler is buggy
+  init() {
+
+  }
 
   func fulfil(v: T) {
     if let f = onSuccess {
-      f(v)
+      queue.addOperationWithBlock {
+        f(v)
+      }
     } else {
       value = [v]
       state = .IsFulfilled
@@ -53,35 +43,62 @@ class Wyrd<T> {
 
   func reject(e: NSError) {
     if let f = onError {
-      f(e)
+      queue.addOperationWithBlock {
+        f(e)
+      }
     } else {
       error = [e]
-    }
-  }
-
-  func success(f: T -> ()) {
-    switch state {
-    case .IsPending:
-      onSuccess = f
-    case .IsFulfilled:
-      f(value[0])
-    default:
-      ()
+      state = .IsRejected
     }
   }
 }
 
 operator infix => { associativity left }
 
-func => <T1, T2>(w1: Wyrd<T1>, then: T1 -> Wyrd<T2>) -> Wyrd<T2> {
+func => <T1, T2>(w1: Wyrd<T1>, f: T1 -> Wyrd<T2>) -> Wyrd<T2> {
   let w2 = Wyrd<T2>()
-  w1.success { v1 in
-    NSOperationQueue.mainQueue().addOperationWithBlock {
-      let temp = then(v1)
-      temp.success { v2 in
-        w2.fulfil(v2)
-      }
+  w1 =~ { v1 in
+    let temp = f(v1)
+    temp =~ { v2 in
+      w2.fulfil(v2)
     }
   }
   return w2
 }
+
+operator infix =~ { associativity left }
+
+func =~ <T>(w: Wyrd<T>, f: T -> ()) -> Wyrd<T> {
+  switch w.state {
+  case .IsPending:
+    w.onSuccess = f
+  case .IsFulfilled:
+    w.queue.addOperationWithBlock {
+      f(w.value[0])
+    }
+  default:
+    ()
+  }
+
+  return w
+}
+
+
+operator infix =! { associativity left }
+
+func =! <T>(w: Wyrd<T>, f: NSError -> ()) -> Wyrd<T> {
+  switch w.state {
+  case .IsPending:
+    w.onError = f
+  case .IsRejected:
+    w.queue.addOperationWithBlock {
+      f(w.error[0])
+    }
+  default:
+    ()
+  }
+
+  return w
+}
+
+
