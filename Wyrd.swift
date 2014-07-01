@@ -83,7 +83,6 @@ func =~ <T>(w: Wyrd<T>, f: T -> ()) -> Wyrd<T> {
   return w
 }
 
-
 operator infix =! { associativity left }
 
 func =! <T>(w: Wyrd<T>, f: NSError -> ()) -> Wyrd<T> {
@@ -101,4 +100,18 @@ func =! <T>(w: Wyrd<T>, f: NSError -> ()) -> Wyrd<T> {
   return w
 }
 
+operator infix =| { associativity left precedence 101 }
 
+func =| <T1, T2>(w1: Wyrd<T1>, w2: Wyrd<T2>) -> Wyrd<(T1, T2)> {
+  let w3 = Wyrd<(T1, T2)>()
+
+  return w3
+}
+
+operator infix =|| { associativity left precedence 101 }
+
+func =| <T>(w1: Wyrd<T>, w2: Wyrd<T>) -> Wyrd<T[]> {
+  let w3 = Wyrd<T[]>()
+
+  return w3
+}
