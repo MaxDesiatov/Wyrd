@@ -8,7 +8,7 @@ At the moment the most convenient way is to add Wyrd repository as a git submodu
 
     git add submodule add https://github.com/explicitcall/Wyrd.git wyrd
 
-Then add `Wyrd.swift` file to your project.
+Then add `Wyrd.swift` and `Helpers.swift` (add the latter if you will use helpers and most likely you will) files to your project.
 
 CocoaPods package will be added as soon as CocoaPods will support source code in Swift.
 
