@@ -50,8 +50,7 @@ extension NSURLSession {
       if let e = error {
         result.reject(e)
       } else {
-        let tuple = (data, response)
-        result.fulfil(tuple)
+        result.fulfil(data, response)
       }
     }
 

@@ -25,9 +25,12 @@ public class Wyrd<T> {
   var queue = NSOperationQueue.mainQueue()
   var state = State.IsPending
 
-  // FIXME: not really needed, but compiler is buggy
   init() {
+  }
 
+  init(_ v: T) {
+    value = v
+    state = .IsFulfilled
   }
 
   func fulfil(v: T) {
@@ -102,16 +105,29 @@ public func =! <T>(w: Wyrd<T>, f: NSError -> ()) -> Wyrd<T> {
 
 operator infix =| { associativity left precedence 101 }
 
-func =| <T1, T2>(w1: Wyrd<T1>, w2: Wyrd<T2>) -> Wyrd<(T1, T2)> {
+public func =| <T1, T2>(w1: Wyrd<T1>, w2: Wyrd<T2>) -> Wyrd<(T1, T2)> {
   let w3 = Wyrd<(T1, T2)>()
+
+  w1 =~ { v1 in
+    if w2.state == .IsFulfilled {
+      w3.fulfil(v1, w2.value!)
+    }
+  }
+
+  w2 =~ { v2 in
+    if w1.state == .IsFulfilled {
+      w3.fulfil(w1.value!, v2)
+    }
+  }
 
   return w3
 }
 
 operator infix =|| { associativity left precedence 101 }
 
-func =| <T>(w1: Wyrd<T>, w2: Wyrd<T>) -> Wyrd<[T]> {
-  let w3 = Wyrd<[T]>()
-
-  return w3
+public func =|| <T>(w1: Wyrd<T>, w2: Wyrd<T>) -> Wyrd<[T]> {
+  return w1 =| w2 => { t in
+    let (v1, v2) = t
+    return Wyrd([v1, v2])
+  }
 }
