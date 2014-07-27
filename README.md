@@ -22,16 +22,12 @@ let s = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConf
 let u1 = NSURL(string: "https://api/endpoint1")
 let u2 = NSURL(string: "https://api/endpoint2")
 s.getURLData(u1) => { (full: FullResponse) -> Wyrd<FullResponse> in
-  switch full {
-  case let (data, response):
-    println("data1 length is \(data.length)")
-  }
+  let (data, response) = full
+  println("data1 length is \(data.length)")
   return s.getURLData(u2)
 } =~ { (full: FullResponse) in
-  switch full {
-  case let (data, response):
-    println("data2 length is \(data.length)")
-  }
+  let (data, response) = full
+  println("data2 length is \(data.length)")
 }
 ```
 
