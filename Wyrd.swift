@@ -56,6 +56,34 @@ public class Wyrd<T> {
   }
 }
 
+operator infix =~ { associativity left }
+
+public func =~ <T>(w: Wyrd<T>, f: T -> ()) -> Wyrd<T> {
+  if w.state == .IsPending {
+    w.onSuccess = f
+  } else if w.state == .IsFulfilled {
+    w.queue.addOperationWithBlock {
+      f(w.value!)
+    }
+  }
+
+  return w
+}
+
+operator infix =! { associativity left }
+
+public func =! <T>(w: Wyrd<T>, f: NSError -> ()) -> Wyrd<T> {
+  if w.state == .IsPending {
+    w.onError = f
+  } else if w.state == .IsRejected {
+    w.queue.addOperationWithBlock {
+      f(w.error!)
+    }
+  }
+
+  return w
+}
+
 operator infix => { associativity left }
 
 public func => <T1, T2>(w1: Wyrd<T1>, f: T1 -> Wyrd<T2>) -> Wyrd<T2> {
@@ -67,40 +95,6 @@ public func => <T1, T2>(w1: Wyrd<T1>, f: T1 -> Wyrd<T2>) -> Wyrd<T2> {
     }
   }
   return w2
-}
-
-operator infix =~ { associativity left }
-
-public func =~ <T>(w: Wyrd<T>, f: T -> ()) -> Wyrd<T> {
-  switch w.state {
-  case .IsPending:
-    w.onSuccess = f
-  case .IsFulfilled:
-    w.queue.addOperationWithBlock {
-      f(w.value!)
-    }
-  default:
-    ()
-  }
-
-  return w
-}
-
-operator infix =! { associativity left }
-
-public func =! <T>(w: Wyrd<T>, f: NSError -> ()) -> Wyrd<T> {
-  switch w.state {
-  case .IsPending:
-    w.onError = f
-  case .IsRejected:
-    w.queue.addOperationWithBlock {
-      f(w.error!)
-    }
-  default:
-    ()
-  }
-
-  return w
 }
 
 operator infix =| { associativity left precedence 101 }
@@ -126,8 +120,7 @@ public func =| <T1, T2>(w1: Wyrd<T1>, w2: Wyrd<T2>) -> Wyrd<(T1, T2)> {
 operator infix =|| { associativity left precedence 101 }
 
 public func =|| <T>(w1: Wyrd<T>, w2: Wyrd<T>) -> Wyrd<[T]> {
-  return w1 =| w2 => { t in
-    let (v1, v2) = t
+  return w1 =| w2 => { (v1, v2) in
     return Wyrd([v1, v2])
   }
 }
