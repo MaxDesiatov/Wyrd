@@ -8,10 +8,10 @@
 
 import Foundation
 
-typealias FullResponse = (NSData!, NSURLResponse!)
+public typealias FullResponse = (NSData!, NSURLResponse!)
 
 extension NSURLSession {
-  func getURLData(url: NSURL) -> Wyrd<FullResponse> {
+  public func getURLData(url: NSURL) -> Wyrd<FullResponse> {
     let result = Wyrd<FullResponse>()
 
     let task = dataTaskWithURL(url) { data, response, error in

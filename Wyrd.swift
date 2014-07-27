@@ -14,13 +14,13 @@ enum State {
   case IsRejected
 }
 
-class Wyrd<T> {
+public class Wyrd<T> {
   var onSuccess: (T -> ())?
   var onError: (NSError -> ())?
 
   // FIXME: these two should be optionals, but compiler is buggy
-  var value: T[] = []
-  var error: NSError[] = []
+  var value: T?
+  var error: NSError?
 
   var queue = NSOperationQueue.mainQueue()
   var state = State.IsPending
@@ -36,7 +36,7 @@ class Wyrd<T> {
         f(v)
       }
     } else {
-      value = [v]
+      value = v
       state = .IsFulfilled
     }
   }
@@ -47,7 +47,7 @@ class Wyrd<T> {
         f(e)
       }
     } else {
-      error = [e]
+      error = e
       state = .IsRejected
     }
   }
@@ -55,7 +55,7 @@ class Wyrd<T> {
 
 operator infix => { associativity left }
 
-func => <T1, T2>(w1: Wyrd<T1>, f: T1 -> Wyrd<T2>) -> Wyrd<T2> {
+public func => <T1, T2>(w1: Wyrd<T1>, f: T1 -> Wyrd<T2>) -> Wyrd<T2> {
   let w2 = Wyrd<T2>()
   w1 =~ { v1 in
     let temp = f(v1)
@@ -68,13 +68,13 @@ func => <T1, T2>(w1: Wyrd<T1>, f: T1 -> Wyrd<T2>) -> Wyrd<T2> {
 
 operator infix =~ { associativity left }
 
-func =~ <T>(w: Wyrd<T>, f: T -> ()) -> Wyrd<T> {
+public func =~ <T>(w: Wyrd<T>, f: T -> ()) -> Wyrd<T> {
   switch w.state {
   case .IsPending:
     w.onSuccess = f
   case .IsFulfilled:
     w.queue.addOperationWithBlock {
-      f(w.value[0])
+      f(w.value!)
     }
   default:
     ()
@@ -85,13 +85,13 @@ func =~ <T>(w: Wyrd<T>, f: T -> ()) -> Wyrd<T> {
 
 operator infix =! { associativity left }
 
-func =! <T>(w: Wyrd<T>, f: NSError -> ()) -> Wyrd<T> {
+public func =! <T>(w: Wyrd<T>, f: NSError -> ()) -> Wyrd<T> {
   switch w.state {
   case .IsPending:
     w.onError = f
   case .IsRejected:
     w.queue.addOperationWithBlock {
-      f(w.error[0])
+      f(w.error!)
     }
   default:
     ()
@@ -110,8 +110,8 @@ func =| <T1, T2>(w1: Wyrd<T1>, w2: Wyrd<T2>) -> Wyrd<(T1, T2)> {
 
 operator infix =|| { associativity left precedence 101 }
 
-func =| <T>(w1: Wyrd<T>, w2: Wyrd<T>) -> Wyrd<T[]> {
-  let w3 = Wyrd<T[]>()
+func =| <T>(w1: Wyrd<T>, w2: Wyrd<T>) -> Wyrd<[T]> {
+  let w3 = Wyrd<[T]>()
 
   return w3
 }
