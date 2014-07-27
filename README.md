@@ -21,13 +21,13 @@ Obligatory example (`getURLData` and `FullResponse` typealias are provided to yo
 let s = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessionConfiguration())
 let u1 = NSURL(string: "https://api/endpoint1")
 let u2 = NSURL(string: "https://api/endpoint2")
-(s.getURLData(u1) => { (full: FullResponse) -> Wyrd<FullResponse> in
+s.getURLData(u1) => { (full: FullResponse) -> Wyrd<FullResponse> in
   switch full {
   case let (data, response):
     println("data1 length is \(data.length)")
   }
   return s.getURLData(u2)
-}).success { (full: FullResponse) in
+} =~ { (full: FullResponse) in
   switch full {
   case let (data, response):
     println("data2 length is \(data.length)")
